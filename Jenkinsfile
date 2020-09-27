@@ -10,8 +10,8 @@ node {
                 sh "${MavenCMD} clean package"       
     }
     stage('Docker image build & push to Docker Hub') {
-        sh "${DockerCMD} --version"
-        sh "${DockerCMD} build -t madhuha/myspringbootimage ."
+        sh "sudo ${DockerCMD} --version"
+        sh "sudo ${DockerCMD} build -t madhuha/myspringbootimage ."
         withCredentials([string(credentialsId: 'DockerHubPass', variable: 'dockerHubPass')]) {
            sh "${DockerCMD} login -u madhuha -p ${dockerHubPass}"     
         }
